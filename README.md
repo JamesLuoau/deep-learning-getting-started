@@ -36,6 +36,32 @@ Videos
 ![Multiple Layer](pictures/multilayer-diagram-weights.png)
 
 ![Input Times Weights](pictures/input-times-weights-dots.png)
+```python
+hidden_layer_input = np.dot(x, weights_input_hidden)
+hidden_layer_output = sigmoid(hidden_layer_input)
+
+output_layer_in = np.dot(hidden_layer_output, weights_hidden_output)
+output = sigmoid(output_layer_in)
+```
+
+##Back propagation
+To update the weights to hidden layers using gradient descent, you need to know how much error each of the hidden units contributed to the final output. Since the output of a layer is determined by the weights between layers, the error resulting from units is scaled by the weights going forward through the network. Since we know the error at the output, we can use the weights to work backwards to hidden layers.
+
+![Back Propagation](pictures/back_propagation.png)
+![Gradient of Weights](pictures/gradient_of_weights.png)
+
+```python
+error = target - output
+
+output_error_term = error * output * (1 - output)
+
+hidden_error_term = np.dot(output_error_term, weights_hidden_output) * \
+                    hidden_layer_output * (1 - hidden_layer_output)
+
+delta_w_h_o = learnrate * output_error_term * hidden_layer_output
+
+delta_w_i_h = learnrate * hidden_error_term * x[:, None]
+```
 
 
 ##Neural Network Structure
