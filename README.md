@@ -36,6 +36,8 @@ Videos
 ![Multiple Layer](pictures/multilayer-diagram-weights.png)
 
 ![Input Times Weights](pictures/input-times-weights-dots.png)
+![Matrix Dot](pictures/matrix_dot.png)
+
 ```python
 hidden_layer_input = np.dot(x, weights_input_hidden)
 hidden_layer_output = sigmoid(hidden_layer_input)

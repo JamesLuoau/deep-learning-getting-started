@@ -107,13 +107,13 @@ test_w_i_h = np.array([[0.1, -0.2],
                        [-0.3, 0.2]])
 test_w_h_o = np.array([[0.3],
                        [-0.1]])
-
+# test run
 network = NeuralNetwork(3, 2, 1, 0.5)
 network.weights_input_to_hidden = test_w_i_h.copy()
 network.weights_hidden_to_output = test_w_h_o.copy()
 print("run:", network.run(inputs))
 assert np.allclose(network.run(inputs), 0.09998924)
-
+# test training
 network = NeuralNetwork(3, 2, 1, 0.5)
 network.weights_input_to_hidden = test_w_i_h.copy()
 network.weights_hidden_to_output = test_w_h_o.copy()
