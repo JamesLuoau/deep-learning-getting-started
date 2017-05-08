@@ -86,12 +86,12 @@ class NeuralNetwork(object):
         print("features run: ", features)
         #### Implement the forward pass here ####
         # TODO: Hidden layer - replace these values with the appropriate calculations.
-        hidden_inputs = np.dot(features, self.weights_input_to_hidden)  # signals into hidden layer
+        hidden_inputs = np.dot(self.weights_input_to_hidden.T, features.T)  # signals into hidden layer
         hidden_outputs = self.activation_function(hidden_inputs)  # signals from hidden layer
 
         # TODO: Output layer - Replace these values with the appropriate calculations.
-        final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output)  # signals into final output layer
-        final_outputs = self.activation_function(final_inputs)  # signals from final output layer
+        final_inputs = np.dot(self.weights_hidden_to_output.T, hidden_outputs)  # signals into final output layer
+        final_outputs = final_inputs  # signals from final output layer
 
         return final_outputs
 
@@ -107,6 +107,12 @@ test_w_i_h = np.array([[0.1, -0.2],
                        [-0.3, 0.2]])
 test_w_h_o = np.array([[0.3],
                        [-0.1]])
+
+network = NeuralNetwork(3, 2, 1, 0.5)
+network.weights_input_to_hidden = test_w_i_h.copy()
+network.weights_hidden_to_output = test_w_h_o.copy()
+print("run:", network.run(inputs))
+assert np.allclose(network.run(inputs), 0.09998924)
 
 network = NeuralNetwork(3, 2, 1, 0.5)
 network.weights_input_to_hidden = test_w_i_h.copy()
