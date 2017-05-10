@@ -51,17 +51,16 @@ class NeuralNetwork(object):
 
             # TODO: Output layer - Replace these values with your calculations.
             final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output)  # signals into final output layer
-            final_outputs = self.activation_function(final_inputs)  # signals from final output layer
+            final_outputs = final_inputs  # signals from final output layer
 
             #### Implement the backward pass here ####
             ### Backward pass ###
 
             # TODO: Output error - Replace this value with your calculations.
             error = y - final_outputs  # Output layer error is the difference between desired target and actual output.
-            print(error)
 
             # TODO: Backpropagated error terms - Replace these values with your calculations.
-            output_error_term = error * final_outputs * (1 - final_outputs)
+            output_error_term = error
             # TODO: Calculate the hidden layer's contribution to the error
             hidden_error = np.dot(output_error_term, self.weights_hidden_to_output.T)
 
@@ -83,7 +82,25 @@ class NeuralNetwork(object):
             ---------
             features: 1D array of feature values
         '''
-        print("features run: ", features)
+        #### Implement the forward pass here ####
+        # TODO: Hidden layer - replace these values with the appropriate calculations.
+        hidden_inputs = np.dot(features, self.weights_input_to_hidden)  # signals into hidden layer
+        hidden_outputs = self.activation_function(hidden_inputs)  # signals from hidden layer
+
+        # TODO: Output layer - Replace these values with the appropriate calculations.
+        final_inputs = np.dot(hidden_outputs, self.weights_hidden_to_output)  # signals into final output layer
+        final_outputs = final_inputs  # signals from final output layer
+
+        return final_outputs
+
+    def run_t(self, features):
+        ''' Run a forward pass through the network with input features
+
+            Arguments
+            ---------
+            features: 1D array of feature values
+        '''
+
         #### Implement the forward pass here ####
         # TODO: Hidden layer - replace these values with the appropriate calculations.
         hidden_inputs = np.dot(self.weights_input_to_hidden.T, features.T)  # signals into hidden layer
@@ -94,6 +111,7 @@ class NeuralNetwork(object):
         final_outputs = final_inputs  # signals from final output layer
 
         return final_outputs
+
 
 
 def MSE(y, Y):
@@ -119,10 +137,10 @@ network.weights_input_to_hidden = test_w_i_h.copy()
 network.weights_hidden_to_output = test_w_h_o.copy()
 
 network.train(inputs, targets)
-np.allclose(network.weights_hidden_to_output,
+assert np.allclose(network.weights_hidden_to_output,
                             np.array([[0.37275328],
                                       [-0.03172939]]))
-np.allclose(network.weights_input_to_hidden,
+assert np.allclose(network.weights_input_to_hidden,
                             np.array([[0.10562014, -0.20185996],
                                       [0.39775194, 0.50074398],
                                       [-0.29887597, 0.19962801]]))
