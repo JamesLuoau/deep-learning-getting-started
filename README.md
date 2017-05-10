@@ -1,26 +1,26 @@
 # deep-learning-getting-started
-BGL Developer Internal Training Project
 
 Every equation in the book, the readership would be halved
 [<A Brief History of Time>](https://en.wikipedia.org/wiki/A_Brief_History_of_Time)
 
-##How would you going to implement it?
+## How would you going to implement it?
+
 If?
 Thousands of if?
 100 thousands of if?
 
 
-##Brain
+## Brain
 
-##What makes you and me
+## What makes you and me
 Kids brain formed, 3 or 8 years old we got the highest neural in our head
 
-##If we'd like to save our brain, what format is it going to have?
+## If we'd like to save our brain, what format is it going to have?
 Text?
 Pictures?
 Videos
 
-##What dose weights means
+## What dose weights means
 ![Linear Regression](pictures/logistic_regression_uni.png)
 
 ![Linear Regression Gradient Descent](pictures/logistic_regression_minimize_error_and_gradient_descent.png)
@@ -29,10 +29,10 @@ Videos
 
 [Source for And Preceptron](one_perceptron_and.py)
 
-##How to find the right weights
+## How to find the right weights
 ![Gradient Descent](pictures/gradient_descent.png)
 
-##Expend weights to multiple level
+## Expend weights to multiple level
 ![Multiple Layer](pictures/multilayer-diagram-weights.png)
 
 ![Input Times Weights](pictures/input-times-weights-dots.png)
@@ -46,7 +46,7 @@ output_layer_in = np.dot(hidden_layer_output, weights_hidden_output)
 output = sigmoid(output_layer_in)
 ```
 
-##Back propagation
+## Back propagation
 To update the weights to hidden layers using gradient descent, you need to know how much error each of the hidden units contributed to the final output. Since the output of a layer is determined by the weights between layers, the error resulting from units is scaled by the weights going forward through the network. Since we know the error at the output, we can use the weights to work backwards to hidden layers.
 
 ![Back Propagation](pictures/back_propagation.png)
@@ -66,7 +66,7 @@ delta_w_i_h = learnrate * hidden_error_term * x[:, None]
 ```
 
 
-##Neural Network Structure
+## Neural Network Structure
 A Neural Network have to have a training and prediction process, we make two method
 ```python
 def train(x, y):
@@ -77,13 +77,13 @@ def predict(x):
     return y
 ```
 
-###Node
+### Node
 ```python
 def sigma_summation(x, weights):
     sum([xi + wi for xi in x for wi in weights])
 ```
 
-####Activation Functions
+#### Activation Functions
 we have many activation functions, but only two things we really care about which is 
 equation and derivation
 
